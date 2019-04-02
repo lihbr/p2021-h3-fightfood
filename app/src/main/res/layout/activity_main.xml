@@ -5,62 +5,28 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" android:animationCache="true" android:background="@color/screenBackground">
+        tools:context=".MainActivity" android:animationCache="true" android:background="@color/colorPrimary">
 
-    <TextView
+    <Button
+            android:text="@string/main_cta_fight"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/number"
+            android:layout_height="50dp"
+            android:id="@+id/cta_fight"
+            android:layout_marginBottom="26dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textSize="72sp"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/white" android:id="@+id/textView" android:fontFamily="sans-serif-black"
-            android:textAlignment="center" app:layout_constraintVertical_bias="0.3"/>
-    <Button
-            android:text="@string/button_toast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/toast_button"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:onClick="toastMe"
-            android:background="@android:color/white" android:fontFamily="sans-serif-black" android:textSize="18sp"/>
-    <Button
-            android:text="@string/button_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/count_button"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:onClick="countMe"
-            app:layout_constraintEnd_toStartOf="@+id/random_button" android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toEndOf="@+id/toast_button" android:layout_marginStart="8dp"
-            android:background="@android:color/white" android:fontFamily="sans-serif-black" android:textSize="18sp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
-    <Button
-            android:text="@string/button_random"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/random_button" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:onClick="randomMe"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@android:color/white" android:fontFamily="sans-serif-black" android:textSize="18sp"/>
-    <Button
-            android:text="@string/button_photo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/button4"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/count_button" app:layout_constraintStart_toStartOf="parent"
-            android:onClick="scanMe"
-            android:layout_marginStart="24dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
-            android:background="@android:color/white" android:fontFamily="sans-serif-black" android:textSize="18sp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="startScan"
+            android:layout_marginStart="@dimen/global_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/global_margin"
+            android:background="@drawable/ctabg" android:fontFamily="@font/roboto_medium" android:textSize="14sp"
+            app:layout_constraintHorizontal_bias="0.0" android:typeface="normal" android:textColor="@color/white"
+            android:elevation="10dp"/>
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ff_logo"
+            android:id="@+id/imageView" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/global_margin"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/cta_fight"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY" android:layout_marginStart="@dimen/global_margin" app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true" android:contentDescription="@string/app_name"/>
 
 </android.support.constraint.ConstraintLayout>
