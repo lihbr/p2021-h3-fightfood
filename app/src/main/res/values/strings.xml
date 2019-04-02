@@ -1,11 +1,5 @@
 <resources>
-    <string name="app_name">Ricard</string>
-    <string name="number">0</string>
-    <string name="button_toast">Toast</string>
-    <string name="button_count">Count</string>
-    <string name="button_random">Random</string>
-    <string name="button_photo">Photo</string>
-    <string name="photo_scan">Scan a barcode</string>
-    <string name="scan_default_status">Please scan an item</string>
-    <string name="test">test</string>
+    <string name="app_name">Fight Food</string>
+    <string name="main_cta_fight">Let\'s fight</string>
+    <string name="title_activity_main2_activitytest">Main2Activitytest</string>
 </resources>
