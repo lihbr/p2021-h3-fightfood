@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Fight Food</string>
     <string name="main_cta_fight">Let\'s fight</string>
-    <string name="title_activity_main2_activitytest">Main2Activitytest</string>
+
+    <string name="scan_cta_fight">Fight now</string>
+    <string name="scan_instruction_first">Scan your first article</string>
+    <string name="scan_instruction_second">Scan your second article</string>
+    <string name="scan_history">Article you scanned</string>
+    <string name="scan_focus">Scan article</string>
+    <string name="scan_preview">Scan preview</string>
 </resources>

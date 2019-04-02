@@ -9,7 +9,6 @@ import android.widget.ImageView
 
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.ResultPoint
-import com.google.zxing.client.android.BeepManager
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DecoratedBarcodeView
@@ -23,7 +22,6 @@ import java.util.Arrays
  */
 class FixedCaptureActivity: Activity() {
     private var barcodeView: DecoratedBarcodeView? = null
-    private var beepManager: BeepManager? = null
     private var lastText: String? = null
 
     private val callback = object : BarcodeCallback {
@@ -35,8 +33,6 @@ class FixedCaptureActivity: Activity() {
 
             lastText = result.text
             barcodeView!!.setStatusText(result.text)
-
-            beepManager!!.playBeepSoundAndVibrate()
 
             //Added preview of scanned barcode
             val imageView = findViewById(R.id.barcodePreview) as ImageView
@@ -55,8 +51,6 @@ class FixedCaptureActivity: Activity() {
         barcodeView!!.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
         barcodeView!!.initializeFromIntent(intent)
         barcodeView!!.decodeContinuous(callback)
-
-        beepManager = BeepManager(this)
     }
 
     override fun onResume() {

@@ -7,6 +7,14 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity" android:animationCache="true" android:background="@color/colorPrimary">
 
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ff_logo"
+            android:id="@+id/ff_logo" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/global_margin"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/cta_fight"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY" android:layout_marginStart="@dimen/global_margin" app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true" android:contentDescription="@string/app_name"/>
     <Button
             android:text="@string/main_cta_fight"
             android:layout_width="0dp"
@@ -17,16 +25,9 @@
             app:layout_constraintStart_toStartOf="parent"
             android:onClick="startScan"
             android:layout_marginStart="@dimen/global_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/global_margin"
-            android:background="@drawable/ctabg" android:fontFamily="@font/roboto_medium" android:textSize="14sp"
+            android:background="@drawable/ctabg_accent" android:fontFamily="@font/roboto_medium" android:textSize="14sp"
             app:layout_constraintHorizontal_bias="0.0" android:typeface="normal" android:textColor="@color/white"
             android:elevation="10dp"/>
-    <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/ff_logo"
-            android:id="@+id/imageView" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/global_margin"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/cta_fight"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="fitXY" android:layout_marginStart="@dimen/global_margin" app:layout_constraintStart_toStartOf="parent"
-            android:adjustViewBounds="true" android:contentDescription="@string/app_name"/>
+
 
 </android.support.constraint.ConstraintLayout>
