@@ -3,9 +3,16 @@
     <string name="main_cta_fight">Let\'s fight</string>
 
     <string name="scan_cta_fight">Fight now</string>
+    <string name="scan_instruction_empty"></string>
     <string name="scan_instruction_first">Scan your first article</string>
     <string name="scan_instruction_second">Scan your second article</string>
+    <string name="scan_history_empty"></string>
     <string name="scan_history">Article you scanned</string>
+    <string name="scan_history_close">Close</string>
     <string name="scan_focus">Scan article</string>
     <string name="scan_preview">Scan preview</string>
+    <string name="scan_premium_hint">To scan more article</string>
+    <string name="scan_premium_cta">Become premium</string>
+
+    <string name="fight_start_punchline">Fight in progress&#8230;</string>
 </resources>

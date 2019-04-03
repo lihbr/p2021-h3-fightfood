@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".FightStartActivity" android:background="@color/colorPrimary">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="250dp" app:srcCompat="@drawable/fight_thunder"
+            android:id="@+id/fight_thunder" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/global_margin"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY" android:layout_marginStart="@dimen/global_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true" android:contentDescription="@string/app_name"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/punchline" app:layout_constraintVertical_bias="0.26999998"/>
+    <TextView
+            android:text="@string/fight_start_punchline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/punchline" android:fontFamily="@font/baloo"
+            android:textSize="48sp" android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="@dimen/global_margin_double"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="@dimen/global_margin_double"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="@dimen/global_margin_double"
+            android:lineSpacingExtra="-20sp"/>
+
+</android.support.constraint.ConstraintLayout>

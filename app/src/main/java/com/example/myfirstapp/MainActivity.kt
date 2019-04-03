@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         scanner.setDesiredBarcodeFormats(IntentIntegrator.EAN_13)
         scanner.setBeepEnabled(false)
         scanner.setOrientationLocked(false)
+        scanner.setPrompt("")
         scanner.initiateScan()
     }
 

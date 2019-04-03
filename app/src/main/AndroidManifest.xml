@@ -12,6 +12,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".FightStartActivity">
+        </activity>
         <activity
                 android:name=".FixedCaptureActivity"
                 android:clearTaskOnLaunch="true"
@@ -19,7 +21,9 @@
                 android:stateNotNeeded="true"
                 android:theme="@style/zxing_CaptureTheme"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity
+                android:name=".MainActivity"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
