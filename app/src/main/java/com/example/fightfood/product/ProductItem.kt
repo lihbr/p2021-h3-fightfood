@@ -1,9 +1,7 @@
 package com.example.fightfood.product
 
 import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
 import android.view.View
 import android.widget.ImageView
 import com.example.fightfood.App

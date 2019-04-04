@@ -122,10 +122,6 @@ class ScanActivity: Activity() {
                 }
             }
 
-            println("no")
-            println(filled.toString())
-            println("no")
-
             // Adapt text
             val instruction = findViewById<TextView>(R.id.instruction)
             val history = findViewById<TextView>(R.id.history)

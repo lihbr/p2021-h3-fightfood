@@ -35,17 +35,21 @@ class ResultActivity : AppCompatActivity() {
 
         for (product in offResponses) {
             val p = JSONObject(product)
+
+            // Find img
             var img = p.getJSONObject("product").getString("image_small_url")
             if (img == null || img == "") {
                 img = p.getJSONObject("product").getString("image_url")
             }
 
+            // Fing energy
             var energy = p.getJSONObject("product").getJSONObject("nutriments").getString("energy_100g")
             if (energy == null || energy == "") {
                 energy = p.getJSONObject("product").getJSONObject("nutriments").getString("energy")
             }
             moy += energy.toFloat()
 
+            // Find quality
             var quality = p.getJSONObject("product").getString("nutrition_grades")
             if (quality == null || quality == "") {
                 quality = p.getJSONObject("product").getString("nutrition_grade_fr")
@@ -59,6 +63,7 @@ class ResultActivity : AppCompatActivity() {
                 quality = "low"
             }
 
+            // Find natural
             var natural = p.getJSONObject("product").getString("nova_group")
             if (natural == null || natural == "") {
                 natural = p.getJSONObject("product").getJSONObject("nutriments").getString("nova-group")
@@ -80,11 +85,9 @@ class ResultActivity : AppCompatActivity() {
             ))
         }
 
+        // Determine energy status accordingly to other scanned products
         moy /= offResponses.size
         val stdError = moy / 5
-
-        println(moy)
-        println(stdError)
 
         for (product in products) {
             println(product["energy"])
