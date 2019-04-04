@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Fight Food</string>
     <string name="main_cta_fight">Let\'s fight</string>
+    <string name="ask_permissions">Please grant camera access first!</string>
 
     <string name="scan_cta_fight">Fight now</string>
     <string name="scan_instruction_empty"></string>

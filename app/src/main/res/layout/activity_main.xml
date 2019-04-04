@@ -9,7 +9,7 @@
 
     <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/ff_logo"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_fightfood_logo"
             android:id="@+id/ff_logo" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/global_margin"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/cta_fight"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
@@ -28,6 +28,5 @@
             android:background="@drawable/ctabg_accent" android:fontFamily="@font/roboto_medium" android:textSize="14sp"
             app:layout_constraintHorizontal_bias="0.0" android:typeface="normal" android:textColor="@color/white"
             android:elevation="10dp"/>
-
 
 </android.support.constraint.ConstraintLayout>

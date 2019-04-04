@@ -5,11 +5,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FightStartActivity" android:background="@color/colorPrimary">
+        tools:context=".FightActivity" android:background="@color/colorPrimary">
 
     <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="250dp" app:srcCompat="@drawable/fight_thunder"
+            android:layout_height="250dp" app:srcCompat="@drawable/ic_thunder"
             android:id="@+id/fight_thunder" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/global_margin"
             android:layout_marginTop="8dp"
@@ -22,7 +22,7 @@
             android:text="@string/fight_start_punchline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/punchline" android:fontFamily="@font/baloo"
+            android:id="@+id/punchline" android:fontFamily="@font/baloo_chettan"
             android:textSize="48sp" android:textAlignment="center"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="@dimen/global_margin_double"

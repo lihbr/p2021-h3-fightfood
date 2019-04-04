@@ -1,6 +1,6 @@
-package com.example.myfirstapp
+package com.example.fightfood
 
-import android.animation.ValueAnimator
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
@@ -20,11 +20,7 @@ import com.journeyapps.barcodescanner.DefaultDecoderFactory
 
 import java.util.Arrays
 
-/**
- * This sample performs continuous scanning, displaying the barcode and source image whenever
- * a barcode is scanned.
- */
-class FixedCaptureActivity: Activity() {
+class ScanActivity: Activity() {
     private var barcodeView: DecoratedBarcodeView? = null
     private var scanned: Array<String> = arrayOf("", "")
 
@@ -43,14 +39,14 @@ class FixedCaptureActivity: Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fixed_capture)
+        setContentView(R.layout.activity_scan)
 
-        barcodeView = findViewById(R.id.barcode_scanner) as DecoratedBarcodeView
+        barcodeView = findViewById(R.id.barcode_scanner)
         val formats = Arrays.asList(BarcodeFormat.EAN_13)
         barcodeView!!.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
         barcodeView!!.initializeFromIntent(intent)
-        barcodeView!!.decodeContinuous(callback)
         barcodeView!!.setStatusText("")
+        barcodeView!!.decodeContinuous(callback)
     }
 
     override fun onResume() {
@@ -82,7 +78,7 @@ class FixedCaptureActivity: Activity() {
     }
 
     companion object {
-        private val TAG = FixedCaptureActivity::class.java.simpleName
+        private val TAG = ScanActivity::class.java.simpleName
     }
 
     /**
@@ -164,18 +160,13 @@ class FixedCaptureActivity: Activity() {
             val theID: Int? = resources.getIdentifier(id, "id", packageName)
             if (theID != null) {
                 val element = findViewById<View>(theID)
-                val valueAnimator = ValueAnimator.ofFloat(start, end)
+                val objectAnimator = ObjectAnimator.ofFloat(element, "alpha", start, end)
 
                 if (element.alpha == start) {
-                    valueAnimator.addUpdateListener {
-                        val value = it.animatedValue as Float
-                        element.alpha = value
-                    }
+                    objectAnimator.interpolator = AccelerateInterpolator(1.5f)
+                    objectAnimator.duration = duration
 
-                    valueAnimator.interpolator = AccelerateInterpolator(1.5f)
-                    valueAnimator.duration = duration
-
-                    valueAnimator.start()
+                    objectAnimator.start()
                 }
             }
         }
@@ -192,7 +183,7 @@ class FixedCaptureActivity: Activity() {
                 }
             }
 
-            val fightStartIntent = Intent(this, FightStartActivity::class.java)
+            val fightStartIntent = Intent(this, FightActivity::class.java)
 
             fightStartIntent.putExtra("SCANNED", scanned)
 

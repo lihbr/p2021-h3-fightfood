@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" tools:context=".ScanActivity"
         android:layout_height="match_parent"
 >
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
@@ -43,12 +43,12 @@
                 android:typeface="normal" android:layout_marginStart="@dimen/global_margin"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="@dimen/global_margin"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline"/>
+                app:layout_constraintBottom_toTopOf="@+id/h_guideline"/>
         <android.support.constraint.Guideline
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/guideline"
+                android:id="@+id/h_guideline"
                 app:layout_constraintGuide_percent="0.5"/>
         <TextView
                 android:text="@string/scan_premium_cta"
@@ -59,16 +59,16 @@
                 android:layout_marginStart="@dimen/global_margin" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="@dimen/global_margin" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="@+id/guideline" android:textAlignment="center"/>
+                app:layout_constraintTop_toTopOf="@+id/h_guideline" android:textAlignment="center"/>
     </android.support.constraint.ConstraintLayout>
     <android.support.constraint.Guideline
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/guideline2" app:layout_constraintGuide_percent="0.5"/>
+            android:id="@+id/v_guideline" app:layout_constraintGuide_percent="0.5"/>
     <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="70dp" android:src="@drawable/ff_logo"
+            android:layout_height="70dp" android:src="@drawable/ic_fightfood_logo"
             android:id="@+id/ff_logo" app:layout_constraintEnd_toEndOf="parent"
             android:layout_above="@+id/barcode_scanner"
             android:layout_marginEnd="@dimen/global_margin"
@@ -88,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
     <ImageView
             android:layout_width="fill_parent"
-            android:src="@drawable/scan_focus"
+            android:src="@drawable/ic_fight_focus"
             android:id="@+id/focus" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/global_margin"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="@dimen/global_margin"
@@ -110,7 +110,7 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/v_guideline"
             android:layout_marginEnd="@dimen/global_margin" android:layout_marginTop="@dimen/global_margin_double"
             app:layout_constraintTop_toBottomOf="@+id/history" android:id="@+id/history_1"
             app:cardBackgroundColor="@color/whiteAlpha">
@@ -136,7 +136,7 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/v_guideline"
             android:layout_marginStart="@dimen/global_margin" android:layout_marginTop="@dimen/global_margin_double"
             app:layout_constraintTop_toBottomOf="@+id/history" android:id="@+id/history_2"
             app:cardBackgroundColor="@color/whiteAlpha">
