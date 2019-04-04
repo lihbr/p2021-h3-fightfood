@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.activity_not_main.*
 import org.json.JSONArray
 import org.json.JSONObject
 import android.util.Log
+import android.widget.ImageView
+import com.squareup.picasso.Picasso
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,27 +28,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun toastMe(view: View) {
-        val reqsdqsd = Volley.newRequestQueue(this);
+        val daSingleton = Volley.newRequestQueue(this);
         val url = "https://world.openfoodfacts.org/api/v0/product/3350030201890.json"
 
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
             Response.Listener { response ->
+
+                val foodPic1 = findViewById<ImageView>(R.id.food1)
+                val foodPic2 = findViewById<ImageView>(R.id.food2)
+
                 var strResp = response.toString()
                 val jsonObj = JSONObject(strResp)
                 val code = jsonObj.getString("code")
                 val label = jsonObj.getJSONObject("product").getString("labels")
+                val productPicture = jsonObj.getJSONObject("product").getString("image_small_url")
 
-                findViewById<TextView>(R.id.textView2).text = "Response: %s".format(code.toString())
-                // Log.d("TAG", "La Sauce")
+                Picasso.get()
+                    .load(productPicture)
+                    .into(foodPic1)
+                Picasso.get()
+                    .load(productPicture)
+                    .into(foodPic2)
+
+
+                findViewById<TextView>(R.id.textView2).text = "%s".format(code.toString())
+
             },
             Response.ErrorListener { error ->
                 findViewById<TextView>(R.id.textView2).text = "Shiet"
-                // Log.d("TAG", "SnanS")
                 // TODO: Handle error
             }
         )
 
-        reqsdqsd.add(jsonObjectRequest)
+        daSingleton.add(jsonObjectRequest)
 
         // Access the RequestQueue through your singleton class.
         //MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
