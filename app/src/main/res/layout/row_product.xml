@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="124dp"
+                                             >
+
+    <android.support.constraint.Guideline
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/guideline8"
+            app:layout_constraintGuide_begin="@dimen/result_img"/>
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            app:cardCornerRadius="10dp"
+            android:id="@+id/card"
+            android:elevation="15dp"
+            android:padding="4dp"
+            android:background="@drawable/dummy_bg"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp">
+        <ImageView
+                android:layout_width="@dimen/result_img"
+                android:layout_height="@dimen/result_img" app:srcCompat="@drawable/ctabg_primary"
+                android:id="@+id/product_img"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/result_img" android:layout_marginTop="0dp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="0dp"
+                app:layout_constraintStart_toStartOf="parent"/>
+    </android.support.v7.widget.CardView>
+    <ImageView
+            android:layout_width="@dimen/global_margin_double"
+            android:layout_height="@dimen/global_margin_double" app:srcCompat="@drawable/ic_energy"
+            android:id="@+id/rank_energy"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintEnd_toStartOf="@+id/rank_quality"
+            android:elevation="10dp"
+            android:layout_marginEnd="16dp" android:contentDescription="@string/result_energy"/>
+    <ImageView
+            android:layout_width="@dimen/global_margin_double"
+            android:layout_height="@dimen/global_margin_double" app:srcCompat="@drawable/ic_quality"
+            android:id="@+id/rank_quality" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            android:elevation="10dp"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="@+id/guideline8"
+            android:layout_marginStart="8dp" android:contentDescription="@string/result_quality"/>
+    <ImageView
+            android:layout_width="@dimen/global_margin_double"
+            android:layout_height="@dimen/global_margin_double" app:srcCompat="@drawable/ic_natural"
+            android:id="@+id/rank_natural"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/card"
+            android:elevation="10dp"
+            app:layout_constraintStart_toEndOf="@+id/rank_quality" android:layout_marginStart="16dp"
+            android:contentDescription="@string/result_natural"/>
+</android.support.constraint.ConstraintLayout>

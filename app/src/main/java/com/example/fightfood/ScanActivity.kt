@@ -10,6 +10,7 @@ import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.ResultPoint
@@ -19,15 +20,20 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
 
 import java.util.Arrays
+import android.content.Context
+import java.io.ByteArrayOutputStream
+
 
 class ScanActivity: Activity() {
     private var barcodeView: DecoratedBarcodeView? = null
     private var scanned: Array<String> = arrayOf("", "")
+    private var scannedImg: Array<Bitmap?> = arrayOf(null, null)
 
     private val callback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult) {
             if (result.text == null || scanned.contains(result.text)) {
                 // Prevent duplicate scans
+                Toast.makeText(applicationContext, R.string.scan_already_scanned, Toast.LENGTH_SHORT).show()
                 return
             }
 
@@ -41,6 +47,10 @@ class ScanActivity: Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
 
+        init()
+    }
+
+    private fun init() {
         barcodeView = findViewById(R.id.barcode_scanner)
         val formats = Arrays.asList(BarcodeFormat.EAN_13)
         barcodeView!!.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
@@ -52,6 +62,12 @@ class ScanActivity: Activity() {
     override fun onResume() {
         super.onResume()
 
+        for (i:Int in 0 until scanned.size) {
+            scanned[i] = ""
+            scannedImg[i] = null
+        }
+        updateLayout()
+
         barcodeView!!.resume()
     }
 
@@ -59,18 +75,6 @@ class ScanActivity: Activity() {
         super.onPause()
 
         barcodeView!!.pause()
-    }
-
-    fun pause(view: View) {
-        barcodeView!!.pause()
-    }
-
-    fun resume(view: View) {
-        barcodeView!!.resume()
-    }
-
-    fun triggerScan(view: View) {
-        barcodeView!!.decodeSingle(callback)
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
@@ -84,32 +88,43 @@ class ScanActivity: Activity() {
     /**
      * Update layout
      */
-    private fun updateLayout(text: String = "", img: Bitmap? = null) {
-        if ((scanned.size) > 0) {
-            var filled: Int = 0
-            var found: Boolean = false
+    private fun updateLayout(text: String? = null, img: Bitmap? = null) {
+        if (scanned.isNotEmpty()) {
+            var filled = 0
+            var found = false
 
             for (i:Int in 0 until scanned.size) {
-                if (scanned[i] === "" && text !== "") {
+                // Update arrays
+                if (scanned[i] == "" && text != null) {
                     if (!found) {
                         scanned[i] = text
-
-                        if (img != null) {
-                            val id: Int? = resources.getIdentifier("history_".plus((i + 1).toString()).plus("_image"), "id", packageName)
-                            if (id != null) {
-                                val historyImg = findViewById<ImageView>(id)
-                                historyImg.setImageBitmap(img)
-                                fade("history_".plus((i + 1).toString()).plus("_close"), 0f, 1f)
-                            }
-                        }
-
+                        scannedImg[i] = img
                         found = true
-                        filled++
                     }
-                } else if (scanned[i] !== "") {
+                }
+
+                // Count existing
+                if (scanned[i] != "") {
                     filled++
                 }
+
+                // Update img
+                val id: Int? = resources.getIdentifier("history_${i + 1}_image", "id", packageName)
+                if (id != null) {
+                    val historyImg = findViewById<ImageView>(id)
+                    if (scannedImg[i] != null) {
+                        historyImg.setImageBitmap(scannedImg[i])
+                        fade("history_${i + 1}_close", 0f, 1f)
+                    } else {
+                        historyImg.setImageResource(android.R.color.transparent)
+                        fade("history_${i + 1}_close", 1f, 0f)
+                    }
+                }
             }
+
+            println("no")
+            println(filled.toString())
+            println("no")
 
             // Adapt text
             val instruction = findViewById<TextView>(R.id.instruction)
@@ -136,18 +151,11 @@ class ScanActivity: Activity() {
      * Close an history image
      */
     fun closeHistory (view: View) {
-        val historyNum: Int = Integer.parseInt(view.tag.toString())
+        val historyNum: Int = Integer.parseInt(view.tag.toString()) - 1
 
-        if (scanned[historyNum - 1] !== "") {
-            fade("history_".plus(historyNum.toString()).plus("_close"), 1f, 0f)
-            scanned[historyNum - 1] = ""
-
-            val id: Int? = resources.getIdentifier("history_".plus(historyNum.toString()).plus("_image"), "id", packageName)
-            if (id != null) {
-                val historyImg = findViewById<ImageView>(id)
-                historyImg.setImageResource(android.R.color.transparent)
-            }
-
+        if (scanned[historyNum] !== null) {
+            scanned[historyNum] = ""
+            scannedImg[historyNum] = null
             updateLayout()
         }
     }
@@ -176,19 +184,40 @@ class ScanActivity: Activity() {
      * Launch fight if possible
      */
     fun launchFight(view: View) {
-        if ((scanned.size) > 0) {
+        if (scanned.isNotEmpty()) {
             for (i:Int in 0 until scanned.size) {
-                if (scanned[i] === "") {
+                if (scanned[i] == "") {
                     return
                 }
             }
 
-            val fightStartIntent = Intent(this, FightActivity::class.java)
-
-            fightStartIntent.putExtra("SCANNED", scanned)
-
-            startActivity(fightStartIntent)
+            val fightIntent = Intent(this, FightActivity::class.java)
+            fightIntent.putExtra("SCANNED", scanned)
+            saveScannedImg()
+            startActivity(fightIntent)
         }
-        return
+    }
+
+    /**
+     * Save scanned images
+     */
+    private fun saveScannedImg() {
+        for (i:Int in 0 until scannedImg.size) {
+            if (scannedImg[i] != null) {
+                var fileName: String? = "scannedImg_${i + 1}"
+
+                try {
+                    val bytes = ByteArrayOutputStream()
+                    scannedImg[i]!!.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+                    val fo = openFileOutput(fileName, Context.MODE_PRIVATE)
+                    fo.write(bytes.toByteArray())
+                    // remember close file output
+                    fo.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    fileName = null
+                }
+            }
+        }
     }
 }

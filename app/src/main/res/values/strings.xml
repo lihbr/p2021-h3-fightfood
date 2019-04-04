@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Fight Food</string>
     <string name="main_cta_fight">Let\'s fight</string>
-    <string name="ask_permissions">Please grant camera access first!</string>
+    <string name="main_cta_fight_offline">Fight without connection</string>
+    <string name="ask_permissions">Please grant camera access first</string>
+    <string name="not_connected">No internet connection found</string>
+    <string name="coming_soon">Coming soon! Stay tuned~</string>
 
     <string name="scan_cta_fight">Fight now</string>
     <string name="scan_instruction_empty"></string>
@@ -14,6 +17,17 @@
     <string name="scan_preview">Scan preview</string>
     <string name="scan_premium_hint">To scan more article</string>
     <string name="scan_premium_cta">Become premium</string>
+    <string name="scan_already_scanned">You already scanned this article!</string>
+    <string name="scan_not_found">Product not found, scan again!</string>
 
     <string name="fight_start_punchline">Fight in progress&#8230;</string>
+    <string name="fight_error">Error fetching API</string>
+
+    <string name="result_energy">Calories</string>
+    <string name="result_quality">Quality</string>
+    <string name="result_natural">Natural</string>
+    <string name="result_restart">New fight</string>
+    <string name="result_premium_info">Compare more items?\nWant more products informations?</string>
+    <string name="result_premium_cta">Become premium</string>
+    <string name="result_img">A result img</string>
 </resources>

@@ -4,7 +4,14 @@
     <color name="whiteAlpha">#33FFFFFF</color>
     <color name="black">#1D1D1D</color>
 
+    <color name="yellow">#F2CC00</color>
+
     <color name="colorPrimary">#FFB931</color>
     <color name="colorPrimaryDark">#CC9427</color>
     <color name="colorAccent">#13C1CC</color>
+
+    <color name="rank_low">#CB0000</color>
+    <color name="rank_medium">#FFB931</color>
+    <color name="rank_high">#00CB2D</color>
+    <color name="rank_unknown">#888888</color>
 </resources>

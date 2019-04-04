@@ -3,7 +3,9 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.example.fightfood">
 
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
             android:allowBackup="true"
@@ -13,9 +15,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".FightActivity">
+            tools:ignore="GoogleAppIndexingWarning"
+            android:name=".App">
+        <activity android:name=".ResultActivity">
         </activity>
+        <activity
+                android:name=".FightActivity"
+                android:screenOrientation="portrait"/>
         <activity
                 android:name=".ScanActivity"
                 android:clearTaskOnLaunch="true"

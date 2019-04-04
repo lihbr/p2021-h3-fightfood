@@ -16,17 +16,25 @@
             android:scaleType="fitXY" android:layout_marginStart="@dimen/global_margin" app:layout_constraintStart_toStartOf="parent"
             android:adjustViewBounds="true" android:contentDescription="@string/app_name"/>
     <Button
+            style="@style/bottomButton"
+            android:text="@string/main_cta_fight_offline"
+            android:id="@+id/cta_fight_offline"
+            android:onClick="comingSoon"
+            app:layout_constraintBottom_toTopOf="@id/cta_fight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/ctabg_primary"
+            android:textColor="@color/black"/>
+
+    <Button
+            style="@style/bottomButton"
             android:text="@string/main_cta_fight"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
             android:id="@+id/cta_fight"
-            android:layout_marginBottom="26dp"
+            android:onClick="startScan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:onClick="startScan"
-            android:layout_marginStart="@dimen/global_margin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/global_margin"
-            android:background="@drawable/ctabg_accent" android:fontFamily="@font/roboto_medium" android:textSize="14sp"
-            app:layout_constraintHorizontal_bias="0.0" android:typeface="normal" android:textColor="@color/white"
-            android:elevation="10dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/ctabg_accent"
+            android:textColor="@color/white"/>
 
 </android.support.constraint.ConstraintLayout>
