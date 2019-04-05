@@ -47,8 +47,8 @@ class FightActivity : AppCompatActivity() {
                 null,
                 Response.Listener { response ->
                     val result = response.toString()
-                    val status = JSONObject(result).getInt("status")
-                    if (status != 1) {
+                    val status = JSONObject(result).has("product")
+                    if (!status) {
                         goBack(404)
                     } else {
                         offResponses.add(result)

@@ -8,6 +8,7 @@ import android.view.View
 import com.example.fightfood.product.ProductItem
 import com.example.fightfood.utils.getScanner
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
+import kotlinx.android.synthetic.main.activity_result.*
 import org.json.JSONObject
 
 class ResultActivity : AppCompatActivity() {
@@ -34,27 +35,29 @@ class ResultActivity : AppCompatActivity() {
         var moy = 0f
 
         for (product in offResponses) {
-            val p = JSONObject(product)
+            val p = JSONObject(product).getJSONObject("product")
+
+            var img = ""
+            var energy = "-1"
+            var quality = ""
+            var natural = ""
 
             // Find img
-            var img = p.getJSONObject("product").getString("image_small_url")
-            if (img == null || img == "") {
-                img = p.getJSONObject("product").getString("image_url")
+            if (p.has("image_small_url")) {
+                img = p.getString("image_small_url")
             }
 
-            // Fing energy
-            var energy = p.getJSONObject("product").getJSONObject("nutriments").getString("energy_100g")
-            if (energy == null || energy == "") {
-                energy = p.getJSONObject("product").getJSONObject("nutriments").getString("energy")
+            // Find energy
+            if (p.has("nutriments") && p.getJSONObject("nutriments").has("energy_100g")) {
+                energy = p.getJSONObject("nutriments").getString("energy_100g")
+                moy += energy.toFloat()
             }
-            moy += energy.toFloat()
 
             // Find quality
-            var quality = p.getJSONObject("product").getString("nutrition_grades")
-            if (quality == null || quality == "") {
-                quality = p.getJSONObject("product").getString("nutrition_grade_fr")
+            if (p.has("nutrition_grades")) {
+                quality = p.getString("nutrition_grades")
             }
-            quality = quality.toString()
+
             if (quality == "a" || quality == "b") {
                 quality = "high"
             } else if (quality == "c") {
@@ -64,11 +67,10 @@ class ResultActivity : AppCompatActivity() {
             }
 
             // Find natural
-            var natural = p.getJSONObject("product").getString("nova_group")
-            if (natural == null || natural == "") {
-                natural = p.getJSONObject("product").getJSONObject("nutriments").getString("nova-group")
+            if (p.has("nova_group")) {
+                natural = p.getString("nova_group")
             }
-            natural = natural.toString()
+
             if (natural == "1") {
                 natural = "high"
             } else if (natural == "2") {
@@ -95,8 +97,10 @@ class ResultActivity : AppCompatActivity() {
                 product.put("energy", "high")
             } else if (product["energy"] as Float - (moy - stdError) > 0) {
                 product.put("energy", "low")
-            } else if (product["energy"] != null) {
+            } else if (product["energy"] as Float >= 0) {
                 product.put("energy", "medium")
+            } else {
+                product.put("energy", "")
             }
         }
     }
